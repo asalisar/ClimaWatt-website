@@ -1,102 +1,394 @@
-section {
-padding: 90px 6%;
-margin: 0 auto 28px auto;
-max-width: 1200px;
+/* ============================================================
+   TOKENS
+   ============================================================ */
+
+:root {
+  --color-bg: #F5F6F3;
+  --color-surface: #FFFFFF;
+  --color-ink: #16202B;
+  --color-muted: #5B6670;
+  --color-line: #DCE1DD;
+
+  --color-cold: #146C82;
+  --color-cold-soft: #E1EEF0;
+  --color-hot: #C1440E;
+  --color-hot-soft: #F5E5DA;
+  --color-mixed-soft: #ECEAE3;
+
+  --font-display: "Big Shoulders Display", sans-serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --radius: 6px;
+  --max-width: 1160px;
 }
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--color-hot);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-line);
+}
+
+nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 20px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.menu {
+  display: flex;
+  gap: 32px;
+}
+
+.menu a {
+  text-decoration: none;
+  font-size: 15px;
+  color: var(--color-muted);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  color: var(--color-ink);
+  border-bottom-color: var(--color-hot);
+}
+
+/* ============================================================
+   LAYOUT GENERALE
+   ============================================================ */
+
+main section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 90px 6%;
+}
+
+main section + section {
+  border-top: 1px solid var(--color-line);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.15;
+  margin: 0 0 24px 0;
+  max-width: 20ch;
+}
+
+section > p {
+  max-width: 62ch;
+  font-size: 17px;
+  color: var(--color-muted);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-muted);
+  margin: 0 0 14px 0;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+  padding-top: 110px;
+  padding-bottom: 90px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 1.1;
+  margin: 0 0 22px 0;
+}
+
+.hero-text > p {
+  max-width: 46ch;
+  color: var(--color-muted);
+  font-size: 18px;
+}
+
+.bottone {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 13px 26px;
+  background-color: var(--color-ink);
+  color: var(--color-bg);
+  text-decoration: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+}
+
+.bottone:hover,
+.bottone:focus-visible {
+  background-color: var(--color-hot);
+}
+
+.stat-row {
+  display: flex;
+  gap: 36px;
+  margin: 48px 0 0 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-line);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat dt {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.stat dd {
+  margin: 0;
+  max-width: 16ch;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.hero-chart svg {
+  width: 100%;
+  height: auto;
+}
+
+.chart-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--color-muted);
+}
+
+.chart-label--cold { fill: var(--color-cold); }
+.chart-label--hot { fill: var(--color-hot); }
+
+.chart-caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--color-muted);
+}
+
+/* ============================================================
+   SEZIONI A SFONDO CHIARO (progetto, analisi, dashboard, team)
+   ============================================================ */
 
 #progetto,
 #analisi,
 #dashboard,
 #team {
-background-color: white;
-border-radius: 24px;
+  background-color: var(--color-surface);
+  border-radius: 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
-h2 {
-font-size: 36px;
-line-height: 1.2;
-margin-bottom: 25px;
-}
-
-section p {
-max-width: 800px;
-font-size: 17px;
-color: #555;
-}
-
-/* SPAZIO E LAYOUT DELLE SCHEDE */
+/* ============================================================
+   CARDS ANALISI
+   ============================================================ */
 
 .cards {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 25px;
-margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 40px;
 }
 
 .card {
-background-color: #f5f7f6;
-padding: 30px;
-border-radius: 18px;
+  padding: 28px;
+  border-radius: var(--radius);
+  border-left: 3px solid var(--color-line);
+  background-color: var(--color-bg);
 }
 
-/* DASHBOARD */
+.card h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0 0 10px 0;
+}
+
+.card p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-muted);
+}
+
+.card--hot { border-left-color: var(--color-hot); background-color: var(--color-hot-soft); }
+.card--cold { border-left-color: var(--color-cold); background-color: var(--color-cold-soft); }
+.card--mixed { border-left-color: var(--color-ink); background-color: var(--color-mixed-soft); }
+
+/* ============================================================
+   DASHBOARD PLACEHOLDER
+   ============================================================ */
 
 .dashboard-placeholder {
-margin-top: 35px;
-min-height: 350px;
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-background-color: #f5f7f6;
-border: 2px dashed #2e8b57;
-border-radius: 18px;
-color: #2e8b57;
-font-size: 20px;
+  margin-top: 32px;
+  padding: 32px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  background-color: var(--color-bg);
 }
 
-/* VERSIONE TELEFONO */
-
-@media (max-width: 800px) {
-
-
-section {
-    padding: 60px 20px;
-    margin: 0 12px 20px 12px;
-    border-radius: 20px;
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: var(--color-ink);
+  color: var(--color-bg);
+  margin-bottom: 16px;
 }
 
-#progetto,
-#analisi,
-#dashboard,
-#team {
-    border-radius: 20px;
+.dashboard-placeholder ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--color-muted);
 }
 
-h2 {
-    font-size: 30px;
-    margin-bottom: 18px;
+.dashboard-placeholder li {
+  margin-bottom: 6px;
 }
 
-section p {
-    font-size: 16px;
-    line-height: 1.7;
+/* ============================================================
+   TEAM
+   ============================================================ */
+
+.team-list {
+  list-style: none;
+  margin: 32px 0 0 0;
+  padding: 0;
+  max-width: 480px;
 }
 
-.cards {
+.team-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-top: 1px solid var(--color-line);
+  font-size: 16px;
+}
+
+.team-list li:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.team-name { font-weight: 500; }
+
+.team-role {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 6% 60px 6%;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 860px) {
+  .hero {
     grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 30px;
-}
+    padding-top: 60px;
+  }
 
-.card {
-    padding: 24px;
-}
+  .hero-chart { order: -1; max-width: 320px; }
 
-.dashboard-placeholder {
-    min-height: 260px;
-    padding: 25px;
-}
+  .hero h1 { font-size: 38px; }
 
+  main section {
+    padding: 60px 20px;
+  }
 
+  h2 { font-size: 30px; }
+
+  .stat-row {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .team-list li {
+    font-size: 15px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    padding: 16px 20px;
+  }
+
+  .menu {
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
 }
