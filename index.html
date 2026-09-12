@@ -5,26 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<meta name="description" content="ClimaWatt analizza la relazione tra clima, domanda elettrica e produzione energetica in Italia.">
 
-<title>ClimaWatt | Clima ed energia in Italia</title>
+<title>ClimaWatt | Meteo ed energia in Italia</title>
+
+<meta name="description" content="ClimaWatt analizza la relazione tra condizioni meteorologiche, domanda elettrica e produzione energetica in Italia.">
 
 <link rel="stylesheet" href="style.css">
-```
+
 
 </head>
 
 <body>
 
-<header class="header">
-    <nav class="nav container" aria-label="Navigazione principale">
+<header>
+    <nav>
+        <a href="#" class="logo">ClimaWatt</a>
 
-```
-    <a href="#" class="logo">
-        <span class="logo-mark">CW</span>
-        <span>ClimaWatt</span>
-    </a>
 
     <div class="menu">
         <a href="#progetto">Il progetto</a>
@@ -32,68 +28,35 @@
         <a href="#dashboard">Dashboard</a>
         <a href="#team">Team</a>
     </div>
-
 </nav>
-```
+
 
 </header>
 
 <main>
 
-```
+
 <!-- HERO -->
 <section class="hero">
 
-    <div class="hero-content container">
+    <div>
 
-        <div class="hero-text">
+        <p class="sottotitolo">
+            METEO · ENERGIA · ITALIA
+        </p>
 
-            <p class="sottotitolo">
-                METEO · ENERGIA · ITALIA
-            </p>
+        <h1>
+            Come il clima influenza il sistema elettrico italiano
+        </h1>
 
-            <h1>
-                Come il clima influenza
-                <span>il sistema elettrico italiano</span>
-            </h1>
+        <p>
+            Un'analisi dei dati meteorologici, della domanda elettrica
+            e della produzione energetica nelle zone di mercato italiane.
+        </p>
 
-            <p class="hero-description">
-                Un'analisi dei dati meteorologici, della domanda elettrica
-                e della produzione energetica nelle zone di mercato italiane.
-            </p>
-
-            <div class="hero-actions">
-                <a href="#progetto" class="bottone">
-                    Scopri il progetto
-                </a>
-
-                <a href="#dashboard" class="link-dashboard">
-                    Vai alla dashboard →
-                </a>
-            </div>
-
-        </div>
-
-        <div class="hero-card">
-
-            <div class="hero-card-label">
-                CLIMAWATT · 2025
-            </div>
-
-            <div class="hero-card-icon">
-                ☀
-            </div>
-
-            <h2>
-                Clima + Energia
-            </h2>
-
-            <p>
-                Dati meteorologici ed energetici
-                analizzati insieme.
-            </p>
-
-        </div>
+        <a href="#progetto" class="bottone">
+            Scopri il progetto
+        </a>
 
     </div>
 
@@ -101,120 +64,70 @@
 
 
 <!-- PROGETTO -->
-<section id="progetto" class="section">
+<section id="progetto">
 
-    <div class="container narrow">
+    <h2>Il progetto</h2>
 
-        <p class="section-label">
-            IL PROGETTO
-        </p>
+    <p>
+        ClimaWatt studia la relazione tra condizioni meteorologiche,
+        domanda elettrica e produzione da fonti rinnovabili in Italia
+        durante il 2025.
+    </p>
 
-        <h2>
-            Capire l'energia attraverso il clima
-        </h2>
-
-        <p class="section-intro">
-            ClimaWatt studia la relazione tra condizioni meteorologiche,
-            domanda elettrica e produzione da fonti rinnovabili in Italia
-            durante il 2025.
-        </p>
-
-        <div class="stats">
-
-            <div class="stat">
-                <strong>2025</strong>
-                <span>Periodo analizzato</span>
-            </div>
-
-            <div class="stat">
-                <strong>Italia</strong>
-                <span>Area geografica</span>
-            </div>
-
-            <div class="stat">
-                <strong>3+</strong>
-                <span>Dimensioni analizzate</span>
-            </div>
-
-        </div>
-
-    </div>
+    <p>
+        L'obiettivo è capire come temperatura, radiazione solare e vento
+        possano influenzare il comportamento del sistema elettrico
+        italiano.
+    </p>
 
 </section>
 
 
 <!-- ANALISI -->
-<section id="analisi" class="section section-light">
+<section id="analisi">
 
-    <div class="container">
+    <h2>Le analisi</h2>
 
-        <p class="section-label">
-            LE ANALISI
-        </p>
-
-        <h2>
-            Tre prospettive sul sistema energetico
-        </h2>
-
-        <p class="section-intro">
-            Incrociamo dati energetici e meteorologici per individuare
-            relazioni e variazioni nel sistema elettrico italiano.
-        </p>
-
-        <div class="cards">
-
-            <article class="card">
-
-                <div class="card-number">01</div>
-
-                <h3>
-                    Domanda elettrica
-                </h3>
-
-                <p>
-                    Analisi della domanda elettrica nelle diverse
-                    zone di mercato italiane e delle sue variazioni.
-                </p>
-
-                <span class="card-arrow">→</span>
-
-            </article>
+    <p>
+        Il progetto mette in relazione dati energetici e meteorologici
+        per analizzare il funzionamento del sistema elettrico italiano.
+    </p>
 
 
-            <article class="card">
+    <div class="cards">
 
-                <div class="card-number">02</div>
+        <div class="card">
 
-                <h3>
-                    Produzione energetica
-                </h3>
+            <h3>Domanda elettrica</h3>
 
-                <p>
-                    Analisi della produzione elettrica suddivisa
-                    per fonte energetica e area geografica.
-                </p>
+            <p>
+                Analisi della domanda elettrica nelle diverse
+                zone di mercato italiane.
+            </p>
 
-                <span class="card-arrow">→</span>
-
-            </article>
+        </div>
 
 
-            <article class="card">
+        <div class="card">
 
-                <div class="card-number">03</div>
+            <h3>Produzione energetica</h3>
 
-                <h3>
-                    Dati meteorologici
-                </h3>
+            <p>
+                Analisi della produzione elettrica suddivisa
+                per fonte energetica.
+            </p>
 
-                <p>
-                    Temperatura, radiazione solare e vento vengono
-                    messi in relazione con i dati energetici.
-                </p>
+        </div>
 
-                <span class="card-arrow">→</span>
 
-            </article>
+        <div class="card">
+
+            <h3>Dati meteorologici</h3>
+
+            <p>
+                Temperatura, radiazione solare e vento vengono
+                messi in relazione con i dati energetici.
+            </p>
 
         </div>
 
@@ -224,56 +137,23 @@
 
 
 <!-- DASHBOARD -->
-<section id="dashboard" class="section">
+<section id="dashboard">
 
-    <div class="container">
+    <h2>Dashboard</h2>
 
-        <p class="section-label">
-            ESPLORA I DATI
-        </p>
+    <p>
+        Esplora i risultati dell'analisi attraverso la dashboard
+        interattiva realizzata con Tableau.
+    </p>
 
-        <h2>
-            Dashboard interattiva
-        </h2>
+    <div class="dashboard-placeholder">
 
-        <p class="section-intro">
-            Esplora i risultati dell'analisi attraverso la dashboard
-            interattiva realizzata con Tableau.
-        </p>
+        <div>
+            <strong>Dashboard ClimaWatt</strong>
 
-        <div class="dashboard">
-
-            <div class="dashboard-top">
-                <span class="dashboard-status">
-                    ● Dashboard
-                </span>
-
-                <span>
-                    ClimaWatt · 2025
-                </span>
-            </div>
-
-            <div class="dashboard-content">
-
-                <div class="dashboard-icon">
-                    📊
-                </div>
-
-                <h3>
-                    Dashboard Tableau
-                </h3>
-
-                <p>
-                    Qui verrà integrata la dashboard interattiva
-                    con i dati del progetto.
-                </p>
-
-                <a href="#" class="bottone bottone-small">
-                    Apri dashboard
-                </a>
-
-            </div>
-
+            <p>
+                La dashboard interattiva sarà disponibile qui.
+            </p>
         </div>
 
     </div>
@@ -282,48 +162,29 @@
 
 
 <!-- TEAM -->
-<section id="team" class="section section-light">
+<section id="team">
 
-    <div class="container narrow team">
+    <h2>Team</h2>
 
-        <p class="section-label">
-            IL TEAM
-        </p>
+    <p>
+        ClimaWatt è un progetto dedicato all'analisi del rapporto
+        tra clima, energia e sistema elettrico italiano.
+    </p>
 
-        <h2>
-            ClimaWatt
-        </h2>
-
-        <p>
-            Un progetto dedicato all'analisi dei dati climatici
-            ed energetici italiani.
-        </p>
-
-    </div>
+    <p>
+        Progetto realizzato dal team ClimaWatt.
+    </p>
 
 </section>
-```
+
 
 </main>
 
-<footer class="footer">
+<footer>
 
-```
-<div class="container footer-content">
-
-    <div>
-        <strong>ClimaWatt</strong>
-        <p>
-            Clima, dati ed energia in Italia.
-        </p>
-    </div>
-
-    <p>
-        © 2026 ClimaWatt
-    </p>
-
-</div>
-```
+<p>
+    ClimaWatt · 2026
+</p>
 
 </footer>
 
