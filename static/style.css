@@ -306,6 +306,100 @@ border-radius: 10px; background: var(--white); color: var(--text); font-size: 15
 }
 
 /* ==========================================
+   ENERGIA
+   ========================================== */
+
+.energia-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-top: 40px;
+}
+
+.energia-grafici-header {
+    margin-top: 70px;
+}
+
+.grafico-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+}
+
+.grafico-box h3 {
+    font-size: 17px;
+    margin-bottom: 16px;
+}
+
+.grafico-canvas-wrap {
+    position: relative;
+    height: 260px;
+}
+
+.grafico-immagine {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+.grafico-legenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.grafico-legenda span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.grafico-legenda .pallino {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.stats-rinnovabile {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    justify-content: center;
+    min-height: 260px;
+}
+
+.stat-rinnovabile-riga {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 14px 16px;
+    background: var(--background);
+    border-radius: 10px;
+}
+
+.stat-rinnovabile-riga span {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.stat-rinnovabile-riga strong {
+    font-size: 22px;
+    color: var(--green);
+}
+
+@media (max-width: 900px) {
+    .energia-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
    TABLEAU
    ========================================== */
 

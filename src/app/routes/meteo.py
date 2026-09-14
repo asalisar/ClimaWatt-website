@@ -585,9 +585,10 @@ def vento_medio_giornaliero():
     try:
 
         anno = request.args.get("anno")
+        mese = request.args.get("mese")
         provincia = request.args.get("provincia")
 
-        anno, data_inizio, data_fine = get_year_range(anno)
+        anno, data_inizio, data_fine = get_period_range(anno=anno, mese=mese)
 
         query = """
             SELECT
@@ -663,9 +664,10 @@ def vento_massimo_giornaliero():
     try:
 
         anno = request.args.get("anno")
+        mese = request.args.get("mese")
         provincia = request.args.get("provincia")
 
-        anno, data_inizio, data_fine = get_year_range(anno)
+        anno, data_inizio, data_fine = get_period_range(anno=anno, mese=mese)
 
         query = """
             SELECT
@@ -701,9 +703,10 @@ def vento_minimo_giornaliero():
     try:
 
         anno = request.args.get("anno")
+        mese = request.args.get("mese")
         provincia = request.args.get("provincia")
 
-        anno, data_inizio, data_fine = get_year_range(anno)
+        anno, data_inizio, data_fine = get_period_range(anno=anno, mese=mese)
 
         query = """
             SELECT

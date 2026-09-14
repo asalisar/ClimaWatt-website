@@ -8,6 +8,10 @@ const temperaturaMedia = document.getElementById("temperaturaMedia");
 const temperaturaMassima = document.getElementById("temperaturaMassima");
 const temperaturaMinima = document.getElementById("temperaturaMinima");
 
+const ventoMedio = document.getElementById("ventoMedio");
+const ventoMassimo = document.getElementById("ventoMassimo");
+const ventoMinimo = document.getElementById("ventoMinimo");
+
 const giornoPiuCaldo = document.getElementById("giornoPiuCaldo");
 const valoreGiornoCaldo = document.getElementById("valoreGiornoCaldo");
 
@@ -35,6 +39,10 @@ btnAnalizza.addEventListener("click", async function () {
     temperaturaMedia.textContent = "-- °C";
     temperaturaMassima.textContent = "-- °C";
     temperaturaMinima.textContent = "-- °C";
+
+    ventoMedio.textContent = "-- m/s";
+    ventoMassimo.textContent = "-- m/s";
+    ventoMinimo.textContent = "-- m/s";
 
     giornoPiuCaldo.textContent = "--";
     valoreGiornoCaldo.textContent = "-- °C";
@@ -238,6 +246,65 @@ btnAnalizza.addEventListener("click", async function () {
         }
 
 
+        /*
+         * ==========================================
+         * VENTO (media / massimo / minimo del mese)
+         * ==========================================
+         */
+
+        const rispostaVentoMedio = await fetch(
+            `${API_URL}/vento-medio-giornaliero?mese=${mese}${parametroProvincia}`
+        );
+        const rispostaVentoMassimo = await fetch(
+            `${API_URL}/vento-massimo-giornaliero?mese=${mese}${parametroProvincia}`
+        );
+        const rispostaVentoMinimo = await fetch(
+            `${API_URL}/vento-minimo-giornaliero?mese=${mese}${parametroProvincia}`
+        );
+
+        if (
+            rispostaVentoMedio.ok
+            && rispostaVentoMassimo.ok
+            && rispostaVentoMinimo.ok
+        ) {
+
+            const datiVentoMedio = await rispostaVentoMedio.json();
+            const datiVentoMassimo = await rispostaVentoMassimo.json();
+            const datiVentoMinimo = await rispostaVentoMinimo.json();
+
+            const mediaVento = datiVentoMedio
+                .map(elemento => Number(elemento.vento_medio))
+                .filter(valore => !isNaN(valore));
+
+            if (mediaVento.length > 0) {
+                const media = mediaVento.reduce(
+                    (somma, valore) => somma + valore,
+                    0
+                ) / mediaVento.length;
+
+                ventoMedio.textContent = `${media.toFixed(2)} m/s`;
+            }
+
+            const massimiVento = datiVentoMassimo
+                .map(elemento => Number(elemento.vento_massimo))
+                .filter(valore => !isNaN(valore));
+
+            if (massimiVento.length > 0) {
+                ventoMassimo.textContent =
+                    `${Math.max(...massimiVento).toFixed(2)} m/s`;
+            }
+
+            const minimiVento = datiVentoMinimo
+                .map(elemento => Number(elemento.vento_minimo))
+                .filter(valore => !isNaN(valore));
+
+            if (minimiVento.length > 0) {
+                ventoMinimo.textContent =
+                    `${Math.min(...minimiVento).toFixed(2)} m/s`;
+            }
+        }
+
+
         messaggio.textContent =
             `Dati caricati per ${formattaMese(mese)}.`;
 
@@ -265,6 +332,210 @@ function formattaMese(meseStringa) {
         }
     );
 }
+
+
+/*
+ * ==========================================
+ * SEZIONE ENERGIA: domanda, produzione, capacità
+ * ==========================================
+ */
+
+const NOMI_MESI = [
+    "Gen", "Feb", "Mar", "Apr", "Mag", "Giu",
+    "Lug", "Ago", "Set", "Ott", "Nov", "Dic"
+];
+
+const COLORE_VERDE = "#20804f";
+
+const COLORI_FONTI = [
+    "#20804f", "#2a78d6", "#eda100", "#8a5a3b",
+    "#1baf7a", "#a8a29e", "#d4537e"
+];
+
+async function caricaGraficoDomandaMensile() {
+
+    const canvas = document.getElementById("graficoDomandaMensile");
+
+    if (!canvas || typeof Chart === "undefined") {
+        return;
+    }
+
+    try {
+
+        const risposta = await fetch(
+            `${API_URL}/domanda-media-mensile-nazionale?anno=2025`
+        );
+
+        const dati = await risposta.json();
+
+        const valori = new Array(12).fill(null);
+
+        dati.forEach(riga => {
+            valori[riga.mese - 1] = Number(riga.domanda_media);
+        });
+
+        new Chart(canvas, {
+            type: "line",
+            data: {
+                labels: NOMI_MESI,
+                datasets: [{
+                    label: "Domanda media (MW)",
+                    data: valori,
+                    borderColor: COLORE_VERDE,
+                    backgroundColor: COLORE_VERDE,
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    tension: 0.25
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+    } catch (errore) {
+        console.error(errore);
+    }
+}
+
+async function caricaGraficoProduzioneFonte() {
+
+    const canvas = document.getElementById("graficoProduzioneFonte");
+    const legenda = document.getElementById("legendaProduzioneFonte");
+
+    if (!canvas || typeof Chart === "undefined") {
+        return;
+    }
+
+    try {
+
+        const risposta = await fetch(
+            `${API_URL}/percentuale-produzione-fonte`
+        );
+
+        const dati = await risposta.json();
+
+        const colori = dati.map(
+            (_, indice) => COLORI_FONTI[indice % COLORI_FONTI.length]
+        );
+
+        new Chart(canvas, {
+            type: "doughnut",
+            data: {
+                labels: dati.map(riga => riga.fonte),
+                datasets: [{
+                    data: dati.map(riga => riga.percentuale_produzione),
+                    backgroundColor: colori,
+                    borderColor: "#ffffff",
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        if (legenda) {
+            legenda.innerHTML = dati.map((riga, indice) => `
+                <span>
+                    <span
+                        class="pallino"
+                        style="background:${colori[indice]}"
+                    ></span>
+                    ${riga.fonte} (${Number(riga.percentuale_produzione).toFixed(1)}%)
+                </span>
+            `).join("");
+        }
+
+    } catch (errore) {
+        console.error(errore);
+    }
+}
+
+async function caricaGraficoCapacitaFonte() {
+
+    const canvas = document.getElementById("graficoCapacitaFonte");
+
+    if (!canvas || typeof Chart === "undefined") {
+        return;
+    }
+
+    try {
+
+        const risposta = await fetch(
+            `${API_URL}/capacita-totale-fonte`
+        );
+
+        const dati = await risposta.json();
+
+        new Chart(canvas, {
+            type: "bar",
+            data: {
+                labels: dati.map(riga => riga.fonte),
+                datasets: [{
+                    label: "Capacità installata (MW)",
+                    data: dati.map(riga => Number(riga.capacita_totale)),
+                    backgroundColor: COLORE_VERDE,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+    } catch (errore) {
+        console.error(errore);
+    }
+}
+
+async function caricaStatRinnovabile() {
+
+    const contenitore = document.getElementById("statRinnovabile");
+
+    if (!contenitore) {
+        return;
+    }
+
+    try {
+
+        const risposta = await fetch(
+            `${API_URL}/produzione-rinnovabile-non-rinnovabile`
+        );
+
+        const dati = await risposta.json();
+
+        contenitore.innerHTML = dati.map(riga => `
+            <div class="stat-rinnovabile-riga">
+                <span>${riga.tipo}</span>
+                <strong>${Number(riga.percentuale_produzione).toFixed(1)}%</strong>
+            </div>
+        `).join("");
+
+    } catch (errore) {
+        console.error(errore);
+
+        contenitore.innerHTML =
+            "<p class=\"messaggio\">Dati non disponibili.</p>";
+    }
+}
+
+caricaGraficoDomandaMensile();
+caricaGraficoProduzioneFonte();
+caricaGraficoCapacitaFonte();
+caricaStatRinnovabile();
 
 
 /*
