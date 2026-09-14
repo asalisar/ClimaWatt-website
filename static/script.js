@@ -106,7 +106,7 @@ btnAnalizza.addEventListener("click", async function () {
         const datiMinime = await rispostaMinime.json();
 
 
-        if (!datiMedie.dati || datiMedie.dati.length === 0) {
+        if (!datiMedie || datiMedie.length === 0) {
 
             messaggio.textContent =
                 "Nessun dato disponibile per i filtri selezionati.";
@@ -121,7 +121,7 @@ btnAnalizza.addEventListener("click", async function () {
          * ==========================================
          */
 
-        const valoriMedie = datiMedie.dati
+        const valoriMedie = datiMedie
             .map(elemento => Number(elemento.temperatura_media))
             .filter(valore => !isNaN(valore));
 
@@ -145,10 +145,12 @@ btnAnalizza.addEventListener("click", async function () {
          * ==========================================
          */
 
-        const valoriMassimi = datiMassime.dati
+        const etichettaProvincia = provincia || "Italia (dato nazionale)";
+
+        const valoriMassimi = datiMassime
             .map(elemento => ({
                 data: elemento.data,
-                provincia: elemento.provincia,
+                provincia: etichettaProvincia,
                 temperatura: Number(elemento.temperatura_massima)
             }))
             .filter(elemento => !isNaN(elemento.temperatura));
@@ -193,10 +195,10 @@ btnAnalizza.addEventListener("click", async function () {
          * ==========================================
          */
 
-        const valoriMinimi = datiMinime.dati
+        const valoriMinimi = datiMinime
             .map(elemento => ({
                 data: elemento.data,
-                provincia: elemento.provincia,
+                provincia: etichettaProvincia,
                 temperatura: Number(elemento.temperatura_minima)
             }))
             .filter(elemento => !isNaN(elemento.temperatura));
