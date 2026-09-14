@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="ClimaWatt analizza la relazione tra clima, domanda elettrica e produzione energetica in Italia.">
 <title>ClimaWatt | Clima ed energia in Italia</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
@@ -15,7 +15,6 @@
             <span class="logo-mark">CW</span>
             <span>ClimaWatt</span>
         </a>
-
         <div class="menu">
             <a href="#progetto">Il progetto</a>
             <a href="#analisi">Analisi</a>
@@ -30,140 +29,81 @@
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content container">
-
         <div class="hero-text">
-            <h1>
-                Come il clima influenza il sistema elettrico italiano
-            </h1>
-
+            <h1>Come il clima influenza il sistema elettrico italiano</h1>
             <p class="hero-description">
                 Un'analisi dei dati meteorologici, della domanda elettrica
                 e della produzione energetica nelle zone di mercato italiane.
             </p>
-
             <div class="hero-actions">
-                <a href="#progetto" class="bottone">
-                    Scopri il progetto
-                </a>
-
-                <a href="#dashboard" class="link-dashboard">
-                    Vai alla dashboard
-                </a>
+                <a href="#progetto" class="bottone">Scopri il progetto</a>
+                <a href="#dashboard" class="link-dashboard">Vai alla dashboard</a>
             </div>
         </div>
-
         <div class="hero-card">
-            <div class="hero-card-label">
-                CLIMAWATT · 2025
-            </div>
-
-            <div class="hero-card-icon">
-                ☀
-            </div>
-
-            <h2>
-                Clima + Energia
-            </h2>
-
-            <p>
-                Dati meteorologici ed energetici
-                analizzati insieme.
-            </p>
+            <div class="hero-card-label">CLIMAWATT · 2025</div>
+            <div class="hero-card-icon">☀</div>
+            <h2>Clima + Energia</h2>
+            <p>Dati meteorologici ed energetici analizzati insieme.</p>
         </div>
-
     </div>
 </section>
-
 
 <!-- PROGETTO -->
 <section id="progetto" class="section">
     <div class="container narrow">
         <p class="section-label">IL PROGETTO</p>
-
         <h2>Capire l'energia attraverso il clima</h2>
-
         <p class="section-intro">
             ClimaWatt studia la relazione tra condizioni meteorologiche,
             domanda elettrica e produzione da fonti rinnovabili in Italia
             durante il 2025.
         </p>
-
         <div class="stats">
-            <div class="stat">
-                <strong>2025</strong>
-                <span>Periodo analizzato</span>
-            </div>
-            <div class="stat">
-                <strong>Italia</strong>
-                <span>Area geografica</span>
-            </div>
-            <div class="stat">
-                <strong>3+</strong>
-                <span>Dimensioni analizzate</span>
-            </div>
+            <div class="stat"><strong>2025</strong><span>Periodo analizzato</span></div>
+            <div class="stat"><strong>Italia</strong><span>Area geografica</span></div>
+            <div class="stat"><strong>3+</strong><span>Dimensioni analizzate</span></div>
         </div>
     </div>
 </section>
-
 
 <!-- ANALISI -->
 <section id="analisi" class="section section-light">
     <div class="container">
         <p class="section-label">LE ANALISI</p>
-
         <h2>Tre prospettive sul sistema energetico</h2>
-
         <p class="section-intro">
             Incrociamo dati energetici e meteorologici per individuare
             relazioni e variazioni nel sistema elettrico italiano.
         </p>
-
         <div class="cards">
             <article class="card">
                 <h3>Domanda elettrica</h3>
-                <p>
-                    Analisi della domanda elettrica nelle diverse
-                    zone di mercato italiane e delle sue variazioni.
-                </p>
+                <p>Analisi della domanda elettrica nelle diverse zone di mercato italiane e delle sue variazioni.</p>
             </article>
-
             <article class="card">
                 <h3>Produzione energetica</h3>
-                <p>
-                    Analisi della produzione elettrica suddivisa
-                    per fonte energetica e area geografica.
-                </p>
+                <p>Analisi della produzione elettrica suddivisa per fonte energetica e area geografica.</p>
             </article>
-
             <article class="card">
                 <h3>Dati meteorologici</h3>
-                <p>
-                    Temperatura, radiazione solare e vento vengono
-                    messi in relazione con i dati energetici.
-                </p>
+                <p>Temperatura, radiazione solare e vento vengono messi in relazione con i dati energetici.</p>
             </article>
         </div>
     </div>
 </section>
 
-
 <!-- DASHBOARD -->
 <section id="dashboard" class="section">
     <div class="container">
-
         <div class="section-header">
             <span class="section-label">Dashboard</span>
             <h2>Analisi dei dati meteorologici</h2>
-            <p>
-                Seleziona un mese e una provincia per visualizzare
-                i dati meteorologici.
-            </p>
+            <p>Seleziona un mese e una provincia per visualizzare i dati meteorologici.</p>
         </div>
 
         <div class="dashboard">
-
             <div class="filtri">
-
                 <div class="filtro">
                     <label for="mese">Mese</label>
                     <input type="month" id="mese" value="2025-01">
@@ -173,57 +113,45 @@
                     <label for="provincia">Provincia</label>
                     <select id="provincia">
                         <option value="">Tutte le province</option>
-                        <option value="Cagliari">Cagliari</option>
-                        <option value="Nuoro">Nuoro</option>
-                        <option value="Oristano">Oristano</option>
-                        <option value="Sassari">Sassari</option>
-                        <option value="Sud Sardegna">Sud Sardegna</option>
+                        {% for p in province %}
+                        <option value="{{ p }}">{{ p }}</option>
+                        {% endfor %}
                     </select>
                 </div>
 
-                <button id="btnAnalizza" class="bottone bottone-small">
-                    Analizza
-                </button>
-
+                <button id="btnAnalizza" class="bottone bottone-small">Analizza</button>
             </div>
 
             <div id="messaggio" class="messaggio"></div>
 
             <div class="risultati-meteo">
-
                 <div class="risultato-box">
                     <span>Temperatura media</span>
                     <strong id="temperaturaMedia">-- °C</strong>
                 </div>
-
                 <div class="risultato-box">
                     <span>Temperatura massima</span>
                     <strong id="temperaturaMassima">-- °C</strong>
                 </div>
-
                 <div class="risultato-box">
                     <span>Temperatura minima</span>
                     <strong id="temperaturaMinima">-- °C</strong>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </section>
-
-
 
 <!-- TEAM -->
 <section id="team" class="section section-light">
     <div class="container narrow team">
         <p class="section-label">IL TEAM</p>
         <h2>ClimaWatt</h2>
-        <p>
-            Un progetto dedicato all'analisi dei dati climatici
-            ed energetici italiani.
-        </p>
+        <ul class="team-list">
+            {% for membro in team %}
+            <li><span class="team-name">{{ membro.nome }}</span><span class="team-role">{{ membro.ruolo }}</span></li>
+            {% endfor %}
+        </ul>
     </div>
 </section>
 
@@ -239,5 +167,6 @@
     </div>
 </footer>
 
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </body>
 </html>
