@@ -17,8 +17,9 @@
         </a>
         <div class="menu">
             <a href="#progetto">Il progetto</a>
-            <a href="#analisi">Analisi</a>
             <a href="#dashboard">Dashboard</a>
+            <a href="#tableau">Tableau</a>
+            <a href="#analisi">Analisi</a>
             <a href="#team">Team</a>
         </div>
     </nav>
@@ -67,43 +68,23 @@
     </div>
 </section>
 
-<!-- ANALISI -->
-<section id="analisi" class="section section-light">
-    <div class="container">
-        <p class="section-label">LE ANALISI</p>
-        <h2>Tre prospettive sul sistema energetico</h2>
-        <p class="section-intro">
-            Incrociamo dati energetici e meteorologici per individuare
-            relazioni e variazioni nel sistema elettrico italiano.
-        </p>
-        <div class="cards">
-            <article class="card">
-                <h3>Domanda elettrica</h3>
-                <p>Analisi della domanda elettrica nelle diverse zone di mercato italiane e delle sue variazioni.</p>
-            </article>
-            <article class="card">
-                <h3>Produzione energetica</h3>
-                <p>Analisi della produzione elettrica suddivisa per fonte energetica e area geografica.</p>
-            </article>
-            <article class="card">
-                <h3>Dati meteorologici</h3>
-                <p>Temperatura, radiazione solare e vento vengono messi in relazione con i dati energetici.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
 <!-- DASHBOARD -->
 <section id="dashboard" class="section">
     <div class="container">
+
         <div class="section-header">
             <span class="section-label">Dashboard</span>
             <h2>Analisi dei dati meteorologici</h2>
-            <p>Seleziona un mese e una provincia per visualizzare i dati meteorologici.</p>
+            <p>
+                Seleziona un mese e una provincia per analizzare
+                l'andamento giornaliero delle temperature.
+            </p>
         </div>
 
         <div class="dashboard">
+
             <div class="filtri">
+
                 <div class="filtro">
                     <label for="mese">Mese</label>
                     <input type="month" id="mese" value="2025-01">
@@ -113,47 +94,260 @@
                     <label for="provincia">Provincia</label>
                     <select id="provincia">
                         <option value="">Tutte le province</option>
+
                         {% for p in province %}
                         <option value="{{ p }}">{{ p }}</option>
                         {% endfor %}
+
                     </select>
                 </div>
 
-                <button id="btnAnalizza" class="bottone bottone-small">Analizza</button>
+                <button id="btnAnalizza" class="bottone bottone-small">
+                    Analizza
+                </button>
+
             </div>
 
             <div id="messaggio" class="messaggio"></div>
 
+
             <div class="risultati-meteo">
+
                 <div class="risultato-box">
                     <span>Temperatura media</span>
                     <strong id="temperaturaMedia">-- °C</strong>
                 </div>
+
                 <div class="risultato-box">
                     <span>Temperatura massima</span>
                     <strong id="temperaturaMassima">-- °C</strong>
                 </div>
+
                 <div class="risultato-box">
                     <span>Temperatura minima</span>
                     <strong id="temperaturaMinima">-- °C</strong>
                 </div>
+
             </div>
+
+            <div class="giorni-estremi">
+
+                <div class="risultato-box">
+                    <span>🔥 Giorno più caldo</span>
+                    <strong id="giornoPiuCaldo">--</strong>
+                    <small id="valoreGiornoCaldo">-- °C</small>
+                    <small id="provinciaGiornoCaldo">--</small>
+                </div>
+
+                <div class="risultato-box">
+                    <span>❄️ Giorno più freddo</span>
+                    <strong id="giornoPiuFreddo">--</strong>
+                    <small id="valoreGiornoFreddo">-- °C</small>
+                    <small id="provinciaGiornoFreddo">--</small>
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 </section>
 
-<!-- TEAM -->
-<section id="team" class="section section-light">
-    <div class="container narrow team">
-        <p class="section-label">IL TEAM</p>
-        <h2>ClimaWatt</h2>
-        <ul class="team-list">
-            {% for membro in team %}
-            <li><span class="team-name">{{ membro.nome }}</span><span class="team-role">{{ membro.ruolo }}</span></li>
-            {% endfor %}
-        </ul>
+<!-- TABLEAU -->
+<section id="tableau" class="section section-light">
+    <div class="container">
+
+        <div class="section-header">
+            <span class="section-label">Business Intelligence</span>
+            <h2>Dashboard Tableau</h2>
+            <p>
+                Le dashboard Tableau con l'analisi approfondita di clima,
+                domanda e produzione energetica verranno pubblicate qui
+                non appena disponibili.
+            </p>
+        </div>
+
+        <div class="tableau-embed">
+            <!--
+                Per pubblicare una dashboard:
+                1. Pubblica la viz su Tableau Public (o Tableau Server).
+                2. Copia il link "Condividi" della viz, ad esempio:
+                   https://public.tableau.com/views/NomeCartella/NomeViz
+                3. Incolla quel link nell'attributo data-url del div
+                   qui sotto, al posto del placeholder vuoto.
+                Lo script static/script.js si occupa di caricare
+                l'embed automaticamente quando data-url è presente.
+            -->
+            <div
+                id="tableauViz"
+                class="tableau-viz-container"
+                data-url=""
+            >
+                <p class="tableau-placeholder">
+                    Nessuna dashboard pubblicata al momento.
+                    Torna a trovarci a breve!
+                </p>
+            </div>
+        </div>
+
     </div>
 </section>
+
+<!-- ANALISI -->
+<section id="analisi" class="section section-light">
+    <div class="container">
+
+        <p class="section-label">LE ANALISI</p>
+
+        <h2>Cosa ci raccontano i dati</h2>
+
+        <p class="section-intro">
+            I dati meteorologici analizzati nella dashboard permettono
+            di osservare l'andamento delle temperature e di individuare
+            le giornate più calde e più fredde del periodo considerato.
+            Questi risultati possono essere messi in relazione con
+            la domanda e la produzione del sistema elettrico italiano.
+        </p>
+
+        <div class="cards">
+
+            <article class="card">
+                <h3>Domanda elettrica</h3>
+                <p>
+                    Analisi della domanda elettrica nelle diverse zone
+                    di mercato italiane e delle sue variazioni.
+                </p>
+            </article>
+
+            <article class="card">
+                <h3>Produzione energetica</h3>
+                <p>
+                    Analisi della produzione elettrica suddivisa
+                    per fonte energetica e area geografica.
+                </p>
+            </article>
+
+            <article class="card">
+                <h3>Dati meteorologici</h3>
+                <p>
+                    Temperatura, radiazione solare e vento vengono
+                    messi in relazione con i dati energetici.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+    <!-- TEAM -->
+<section id="team" class="section">
+    <div class="container">
+
+        <div class="section-header">
+            <span class="section-label">Team</span>
+            <h2>Il team di ClimaWatt</h2>
+            <p>
+                Un team multidisciplinare tra sviluppo, dati,
+                business intelligence e analisi.
+            </p>
+        </div>
+
+        <div class="team-grid">
+
+            <!-- SARA -->
+            <div class="team-card">
+                <img
+                    src="{{ url_for('static', filename='images/team/sara.jpg') }}"
+                    alt="Meme Sara Salis"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>Sara Salis</h3>
+                    <span class="team-role">
+                        Scrum Master · Front-end
+                    </span>
+                </div>
+            </div>
+
+
+            <!-- MARCELLA -->
+            <div class="team-card">
+                <img
+                    src="{{ url_for('static', filename='images/team/marcella.jpg') }}"
+                    alt="Meme Marcella Luciano"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>Marcella Luciano</h3>
+                    <span class="team-role">
+                        BI Developer
+                    </span>
+                    <p>Power BI · KPI · Dashboard</p>
+                </div>
+            </div>
+
+
+            <!-- DAVID -->
+            <div class="team-card">
+                <img
+                    src="{{ url_for('static', filename='images/team/david.jpg') }}"
+                    alt="Meme David Andres Boniotti"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>David Andres Boniotti</h3>
+                    <span class="team-role">
+                        Data Engineer
+                    </span>
+                    <p>API · ETL · Database</p>
+                </div>
+            </div>
+
+
+            <!-- ALESSANDRO -->
+            <div class="team-card">
+                <img
+                    src="{{ url_for('static', filename='images/team/alessandro.jpg') }}"
+                    alt="Meme Alessandro Molteni"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>Alessandro Molteni</h3>
+                    <span class="team-role">
+                        Data Scientist / Analyst
+                    </span>
+                    <p>Modello · Scenari</p>
+                </div>
+            </div>
+
+
+            <!-- NICOLE -->
+            <div class="team-card">
+                <img
+                    src="{{ url_for('static', filename='images/team/nicole.jpg') }}"
+                    alt="Meme Nicole Espinoza"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>Nicole Espinoza</h3>
+                    <span class="team-role">
+                        Data Scientist / Analyst
+                    </span>
+                    <p>Modello · Scenari</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
 
 </main>
 
@@ -167,6 +361,10 @@
     </div>
 </footer>
 
+<script
+    type="module"
+    src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"
+></script>
 <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </body>
 </html>
