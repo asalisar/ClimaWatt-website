@@ -181,12 +181,8 @@ btnAnalizza.addEventListener("click", async function () {
 
             if (giornoCaldo) {
 
-                console.log("DATA GIORNO CALDO:", giornoCaldo.data);
-
-                console.log("GIORNO CALDO:", giornoCaldo);
-
                 giornoPiuCaldo.textContent =
-                    giornoCaldo.data;
+                    formattaData(giornoCaldo.data);
 
                 valoreGiornoCaldo.textContent =
                     `${giornoCaldo.temperatura.toFixed(2)} °C`;
@@ -230,12 +226,8 @@ btnAnalizza.addEventListener("click", async function () {
 
             if (giornoFreddo) {
 
-                console.log("DATA GIORNO FREDDO:", giornoFreddo.data);
-
-                console.log("GIORNO FREDDO:", giornoFreddo);
-
                 giornoPiuFreddo.textContent =
-                    giornoFreddo.data;
+                    formattaData(giornoFreddo.data);
 
                 valoreGiornoFreddo.textContent =
                     `${giornoFreddo.temperatura.toFixed(2)} °C`;
@@ -320,6 +312,21 @@ btnAnalizza.addEventListener("click", async function () {
 });
 
 
+function formattaData(dataStringa) {
+
+    const data = new Date(dataStringa);
+
+    return data.toLocaleDateString(
+        "it-IT",
+        {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        }
+    );
+}
+
+
 function formattaMese(meseStringa) {
 
     const data = new Date(`${meseStringa}-01T00:00:00`);
@@ -332,6 +339,30 @@ function formattaMese(meseStringa) {
         }
     );
 }
+
+
+/*
+ * ==========================================
+ * TEAM: click per mostrare la citazione
+ * ==========================================
+ */
+
+document.querySelectorAll(".team-card-clickable").forEach(card => {
+
+    function toggleCitazione() {
+        const aperta = card.getAttribute("aria-expanded") === "true";
+        card.setAttribute("aria-expanded", String(!aperta));
+    }
+
+    card.addEventListener("click", toggleCitazione);
+
+    card.addEventListener("keydown", function (evento) {
+        if (evento.key === "Enter" || evento.key === " ") {
+            evento.preventDefault();
+            toggleCitazione();
+        }
+    });
+});
 
 
 /*
