@@ -150,33 +150,69 @@
 <!-- DASHBOARD -->
 <section id="dashboard" class="section">
     <div class="container">
-        <p class="section-label">ESPLORA I DATI</p>
 
-        <h2>Dashboard interattiva</h2>
-
-        <p class="section-intro">
-            Esplora i risultati dell'analisi attraverso la dashboard
-            interattiva realizzata con Tableau.
-        </p>
+        <div class="section-header">
+            <span class="section-label">Dashboard</span>
+            <h2>Analisi dei dati meteorologici</h2>
+            <p>
+                Seleziona un mese e una provincia per visualizzare
+                i dati meteorologici.
+            </p>
+        </div>
 
         <div class="dashboard">
-            <div class="dashboard-top">
-                <span class="dashboard-status">● Dashboard</span>
-                <span>ClimaWatt · 2025</span>
+
+            <div class="filtri">
+
+                <div class="filtro">
+                    <label for="mese">Mese</label>
+                    <input type="month" id="mese" value="2025-01">
+                </div>
+
+                <div class="filtro">
+                    <label for="provincia">Provincia</label>
+                    <select id="provincia">
+                        <option value="">Tutte le province</option>
+                        <option value="Cagliari">Cagliari</option>
+                        <option value="Nuoro">Nuoro</option>
+                        <option value="Oristano">Oristano</option>
+                        <option value="Sassari">Sassari</option>
+                        <option value="Sud Sardegna">Sud Sardegna</option>
+                    </select>
+                </div>
+
+                <button id="btnAnalizza" class="bottone bottone-small">
+                    Analizza
+                </button>
+
             </div>
 
-            <div class="dashboard-content">
-                <div class="dashboard-icon">📊</div>
-                <h3>Dashboard Tableau</h3>
-                <p>
-                    Qui verrà integrata la dashboard interattiva
-                    con i dati del progetto.
-                </p>
-                <a href="#" class="bottone bottone-small">Apri dashboard</a>
+            <div id="messaggio" class="messaggio"></div>
+
+            <div class="risultati-meteo">
+
+                <div class="risultato-box">
+                    <span>Temperatura media</span>
+                    <strong id="temperaturaMedia">-- °C</strong>
+                </div>
+
+                <div class="risultato-box">
+                    <span>Temperatura massima</span>
+                    <strong id="temperaturaMassima">-- °C</strong>
+                </div>
+
+                <div class="risultato-box">
+                    <span>Temperatura minima</span>
+                    <strong id="temperaturaMinima">-- °C</strong>
+                </div>
+
             </div>
+
         </div>
+
     </div>
 </section>
+
 
 
 <!-- TEAM -->
