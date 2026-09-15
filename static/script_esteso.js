@@ -268,8 +268,9 @@ async function caricaStatisticheAnnuali() {
 
         if (datiCaldo && datiCaldo.length > 0) {
             const riga = datiCaldo[0];
+            const temperatura = Number(riga.temperatura_media).toFixed(1);
             giornoPiuCaldoProvinciaAnno.textContent =
-                `${formattaData(riga.data)} — ${riga.provincia}`;
+                `${formattaData(riga.data)} — ${riga.provincia} (${temperatura} °C)`;
         }
 
         const datiFreddo = await fetchJson(
@@ -278,8 +279,9 @@ async function caricaStatisticheAnnuali() {
 
         if (datiFreddo && datiFreddo.length > 0) {
             const riga = datiFreddo[0];
+            const temperatura = Number(riga.temperatura_media).toFixed(1);
             giornoPiuFreddoProvinciaAnno.textContent =
-                `${formattaData(riga.data)} — ${riga.provincia}`;
+                `${formattaData(riga.data)} — ${riga.provincia} (${temperatura} °C)`;
         }
 
     } catch (errore) {
