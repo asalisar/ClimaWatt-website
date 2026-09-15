@@ -59,7 +59,11 @@ background: var(--green); color: white; border-radius: 10px;
 font-size: 12px; letter-spacing: 0;
 }
 
-.menu { display: flex; align-items: center; gap: 32px; }
+.menu { display: flex; align-items: center; gap: 20px; }
+
+.menu-group { display: flex; align-items: center; gap: 20px; }
+
+.menu-separator { width: 1px; height: 18px; background: var(--border); }
 
 .menu a { text-decoration: none; color: var(--text-light); font-size: 14px; font-weight: 600; transition: color 0.2s ease; }
 .menu a:hover, .menu a:focus-visible { color: var(--green); }
@@ -206,7 +210,8 @@ font-size: 16px;
 .nav { min-height: 68px; }
 .logo { font-size: 20px; }
 .logo-mark { width: 32px; height: 32px; }
-.menu { gap: 14px; }
+.menu { gap: 10px; }
+.menu-group { gap: 10px; }
 .menu a { font-size: 12px; }
 
 .hero-content { min-height: auto; padding-top: 70px; padding-bottom: 70px; gap: 40px; }
@@ -233,7 +238,8 @@ h2 { font-size: 34px; }
 
 /* VERY SMALL PHONES */
 @media (max-width: 420px) {
-.menu { gap: 9px; }
+.menu { gap: 6px; }
+.menu-group { gap: 6px; }
 .menu a { font-size: 10px; }
 h1 { font-size: 38px; }
 .hero-card { border-radius: 16px; }
