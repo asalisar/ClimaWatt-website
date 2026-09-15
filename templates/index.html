@@ -7,7 +7,7 @@
 <title>ClimaWatt | Clima ed energia in Italia</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='style_esteso.css') }}">
-<script src="{{ url_for('static', filename='script_carosello.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='style_carosello.css') }}">
 </head>
 <body>
 
@@ -30,7 +30,6 @@
 
 <main>
 
-{% include "_carosello.html" %}
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content container">
@@ -45,11 +44,8 @@
                 <a href="#dashboard" class="link-dashboard">Vai alla dashboard</a>
             </div>
         </div>
-        <div class="hero-card">
-            <div class="hero-card-label">CLIMAWATT · 2025</div>
-            <div class="hero-card-icon">☀</div>
-            <h2>Clima + Energia</h2>
-            <p>Dati meteorologici ed energetici analizzati insieme.</p>
+        <div class="hero-card hero-card-carosello">
+            {% include "_carosello.html" %}
         </div>
     </div>
 </section>

@@ -1,5 +1,5 @@
 /*
-    Script per _carosello.html.
+    Script per il carosello dentro la hero-card.
     Da collegare in index.html con:
     <script src="{{ url_for('static', filename='script_carosello.js') }}" defer></script>
 */
@@ -13,11 +13,8 @@ if (caroselloTrack) {
     );
 
     const puntiniContainer = document.querySelector(".carosello-puntini");
-    const btnPrecedente = document.querySelector(".carosello-prec");
-    const btnSuccessiva = document.querySelector(".carosello-succ");
 
     let indiceAttuale = 0;
-    let timerAuto = null;
 
     slides.forEach((slide, indice) => {
 
@@ -49,44 +46,11 @@ if (caroselloTrack) {
 
         slides[indiceAttuale].classList.add("attiva");
         puntini[indiceAttuale].classList.add("attivo");
-
-        riavviaTimer();
     }
 
     function avanti() {
         vaiA(indiceAttuale + 1);
     }
 
-    function indietro() {
-        vaiA(indiceAttuale - 1);
-    }
-
-    function riavviaTimer() {
-
-        if (timerAuto) {
-            clearInterval(timerAuto);
-        }
-
-        timerAuto = setInterval(avanti, 5000);
-    }
-
-    if (btnSuccessiva) {
-        btnSuccessiva.addEventListener("click", avanti);
-    }
-
-    if (btnPrecedente) {
-        btnPrecedente.addEventListener("click", indietro);
-    }
-
-    const caroselloSection = document.querySelector(".carosello");
-
-    if (caroselloSection) {
-        caroselloSection.addEventListener(
-            "mouseenter",
-            () => clearInterval(timerAuto)
-        );
-        caroselloSection.addEventListener("mouseleave", riavviaTimer);
-    }
-
-    riavviaTimer();
+    setInterval(avanti, 4000);
 }
