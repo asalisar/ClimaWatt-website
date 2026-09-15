@@ -272,9 +272,10 @@ async function caricaStatisticheProvincia() {
     const provincia = provinciaEstesoSelect.value;
 
     if (!provincia) {
-        oraPiuCaldaAnno.textContent = "Seleziona una provincia";
-        oraPiuFreddaAnno.textContent = "Seleziona una provincia";
-        meseMaxRadiazione.textContent = "Seleziona una provincia";
+        const messaggio = "↑ Scegli una provincia nel filtro qui sopra";
+        oraPiuCaldaAnno.textContent = messaggio;
+        oraPiuFreddaAnno.textContent = messaggio;
+        meseMaxRadiazione.textContent = messaggio;
         return;
     }
 
