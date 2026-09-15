@@ -64,6 +64,29 @@ function costruisceParametroPeriodo() {
 }
 
 
+function aggiornaStatoMese() {
+
+    const labelMese = document.getElementById("labelMeseEsteso");
+
+    if (giornoEstesoInput.value) {
+        meseEstesoInput.disabled = true;
+        if (labelMese) {
+            labelMese.textContent = "Mese (ignorato: hai scelto un giorno)";
+        }
+    } else {
+        meseEstesoInput.disabled = false;
+        if (labelMese) {
+            labelMese.textContent = "Mese (se non scegli un giorno)";
+        }
+    }
+}
+
+if (giornoEstesoInput) {
+    giornoEstesoInput.addEventListener("input", aggiornaStatoMese);
+    aggiornaStatoMese();
+}
+
+
 async function fetchJson(url) {
     const risposta = await fetch(url);
 

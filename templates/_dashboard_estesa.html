@@ -17,12 +17,23 @@
 
                 <div class="filtro">
                     <label for="giornoEsteso">Giorno (opzionale)</label>
-                    <input type="date" id="giornoEsteso">
+                    <input
+                        type="date"
+                        id="giornoEsteso"
+                        min="2025-01-01"
+                        max="2025-12-31"
+                    >
                 </div>
 
                 <div class="filtro">
-                    <label for="meseEsteso">Mese (se non scegli un giorno)</label>
-                    <input type="month" id="meseEsteso" value="2025-01">
+                    <label for="meseEsteso" id="labelMeseEsteso">Mese (se non scegli un giorno)</label>
+                    <input
+                        type="month"
+                        id="meseEsteso"
+                        value="2025-01"
+                        min="2025-01"
+                        max="2025-12"
+                    >
                 </div>
 
                 <div class="filtro">

@@ -34,6 +34,7 @@ def create_app():
         produzione_bp,
         capacita_bp,
         incroci_bp,
+        esteso_bp,
     ):
         app.register_blueprint(blueprint)
 
