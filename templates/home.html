@@ -1,0 +1,183 @@
+{% extends "_layout.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style_carosello.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content container">
+        <div class="hero-text">
+            <h1>Come il clima influenza il sistema elettrico italiano</h1>
+            <p class="hero-description">
+                Un'analisi dei dati meteorologici, della domanda elettrica
+                e della produzione energetica nelle zone di mercato italiane.
+            </p>
+            <div class="hero-actions">
+                <a href="#progetto" class="bottone">Scopri il progetto</a>
+                <a href="/dati#dashboard" class="link-dashboard">Vai alla dashboard</a>
+            </div>
+        </div>
+        <div class="hero-card hero-card-carosello">
+            {% include "_carosello.html" %}
+        </div>
+    </div>
+</section>
+
+<!-- PROGETTO -->
+<section id="progetto" class="section">
+    <div class="container narrow">
+        <p class="section-label">IL PROGETTO</p>
+        <h2>Capire l'energia attraverso il clima</h2>
+        <p class="section-intro">
+            ClimaWatt studia la relazione tra condizioni meteorologiche,
+            domanda elettrica e produzione da fonti rinnovabili in Italia
+            durante il 2025.
+        </p>
+        <div class="stats">
+            <div class="stat"><strong>2025</strong><span>Periodo analizzato</span></div>
+            <div class="stat"><strong>Italia</strong><span>Area geografica</span></div>
+            <div class="stat"><strong>3+</strong><span>Dimensioni analizzate</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="section">
+    <div class="container">
+
+        <div class="section-header">
+            <span class="section-label">Team</span>
+            <h2>Il team di ClimaWatt</h2>
+            <p>
+                Un team multidisciplinare tra sviluppo, dati,
+                business intelligence e analisi.
+            </p>
+        </div>
+
+        <div class="team-grid">
+
+            <!-- SARA -->
+            <div class="team-card team-card-clickable" tabindex="0" role="button" aria-expanded="false">
+                <img
+                    src="{{ url_for('static', filename='images/team/sara.jpg') }}"
+                    alt="Meme Sara Salis"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>Sara Salis</h3>
+                    <span class="team-role">
+                        Scrum Master · Front-end
+                    </span>
+                    <p class="team-citazione">"X ha avvisato nel gruppo che entra in ritardo"</p>
+                </div>
+            </div>
+
+
+            <!-- MARCELLA -->
+            <div class="team-card team-card-clickable" tabindex="0" role="button" aria-expanded="false">
+                <img
+                    src="{{ url_for('static', filename='images/team/marcella.jpg') }}"
+                    alt="Meme Marcella Luciano"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>Marcella Luciano</h3>
+                    <span class="team-role">
+                        BI Developer
+                    </span>
+                    <p>Power BI · KPI · Dashboard</p>
+                    <p class="team-citazione">"Forza Napoli sempre"</p>
+                </div>
+            </div>
+
+
+            <!-- DAVID -->
+            <div class="team-card team-card-clickable" tabindex="0" role="button" aria-expanded="false">
+                <img
+                    src="{{ url_for('static', filename='images/team/david.jpg') }}"
+                    alt="Meme David Andres Boniotti"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>David Andres Boniotti</h3>
+                    <span class="team-role">
+                        Data Scientist / Analyst
+                    </span>
+                    <p>Data Scientist / Analyst</p>
+                    <p class="team-citazione">"Ragazzi so che è tardi ma se non è troppa sbatta.."</p>
+                </div>
+            </div>
+
+
+            <!-- ALESSANDRO -->
+            <div class="team-card team-card-clickable" tabindex="0" role="button" aria-expanded="false">
+                <img
+                    src="{{ url_for('static', filename='images/team/alessandro.jpg') }}"
+                    alt="Meme Alessandro Molteni"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>Alessandro Molteni</h3>
+                    <span class="team-role">
+                        Data Scientist / Analyst
+                    </span>
+                    <p>Modello · Scenari</p>
+                    <p class="team-citazione">"Scusate ragazzi ho laggato"</p>
+                </div>
+            </div>
+
+
+            <!-- NICOLE -->
+            <div class="team-card team-card-clickable" tabindex="0" role="button" aria-expanded="false">
+                <img
+                    src="{{ url_for('static', filename='images/team/nicole.jpg') }}"
+                    alt="Meme Nicole Ojeda Espinoza"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>Nicole Ojeda Espinoza</h3>
+                    <span class="team-role">
+                        Data Engineer
+                    </span>
+                    <p>API · ETL · Database</p>
+                    <p class="team-citazione">"Non so esattamente come ci sono arrivata, ma funziona."</p>
+                </div>
+            </div>
+
+
+            <!-- JOK3R -->
+            <div class="team-card team-card-clickable" tabindex="0" role="button" aria-expanded="false">
+                <img
+                    src="{{ url_for('static', filename='images/team/jok3r.png') }}"
+                    alt="Meme Jok3r"
+                    class="team-meme"
+                >
+
+                <div class="team-info">
+                    <h3>Jok3r</h3>
+                    <span class="team-role">
+                        Motivatore
+                    </span>
+                    <p class="team-citazione">"Ora parlo io"</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='script_carosello.js') }}" defer></script>
+<script src="{{ url_for('static', filename='script_home.js') }}" defer></script>
+{% endblock %}

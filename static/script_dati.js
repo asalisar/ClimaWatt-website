@@ -331,30 +331,6 @@ function formattaMese(meseStringa) {
 
 /*
  * ==========================================
- * TEAM: click per mostrare la citazione
- * ==========================================
- */
-
-document.querySelectorAll(".team-card-clickable").forEach(card => {
-
-    function toggleCitazione() {
-        const aperta = card.getAttribute("aria-expanded") === "true";
-        card.setAttribute("aria-expanded", String(!aperta));
-    }
-
-    card.addEventListener("click", toggleCitazione);
-
-    card.addEventListener("keydown", function (evento) {
-        if (evento.key === "Enter" || evento.key === " ") {
-            evento.preventDefault();
-            toggleCitazione();
-        }
-    });
-});
-
-
-/*
- * ==========================================
  * SEZIONE ENERGIA: domanda, produzione, capacità
  * ==========================================
  */
@@ -555,29 +531,3 @@ caricaGraficoDomandaMensile();
 caricaGraficoProduzioneFonte();
 caricaGraficoCapacitaFonte();
 caricaStatRinnovabile();
-
-
-/*
- * ==========================================
- * EMBED DASHBOARD TABLEAU
- * ==========================================
- * Se il div #tableauViz ha un data-url impostato
- * (vedi templates/index.html), sostituisce il
- * messaggio di placeholder con la viz incorporata.
- */
-
-document.querySelectorAll(".tableau-viz-container").forEach(function (container) {
-
-    const tableauUrl = container.dataset.url;
-
-    if (tableauUrl) {
-
-        container.innerHTML = "";
-
-        const viz = document.createElement("tableau-viz");
-        viz.setAttribute("src", tableauUrl);
-        viz.setAttribute("toolbar", "bottom");
-
-        container.appendChild(viz);
-    }
-});

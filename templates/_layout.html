@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ClimaWatt analizza la relazione tra clima, domanda elettrica e produzione energetica in Italia.">
+<title>{% block title %}ClimaWatt | Clima ed energia in Italia{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav container" aria-label="Navigazione principale">
+        <a href="/" class="logo">
+            <span class="logo-mark">CW</span>
+            <span>ClimaWatt</span>
+        </a>
+        <div class="menu">
+            <a href="/#progetto">Il progetto</a>
+            <a href="/dati#dashboard">Dashboard</a>
+            <a href="/dati#energia">Energia</a>
+            <a href="/tableau#tableau">Tableau</a>
+            <a href="/tableau#analisi">Analisi</a>
+            <a href="/#team">Team</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <div class="container footer-content">
+        <div>
+            <strong>ClimaWatt</strong>
+            <p>Clima, dati ed energia in Italia.</p>
+        </div>
+        <p>© 2026 ClimaWatt</p>
+    </div>
+</footer>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

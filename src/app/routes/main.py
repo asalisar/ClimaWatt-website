@@ -7,6 +7,11 @@ main_bp = Blueprint("main", __name__)
 
 @main_bp.route("/")
 def home():
+    return render_template("home.html")
+
+
+@main_bp.route("/dati")
+def dati():
 
     province = [
         riga["nome"]
@@ -16,9 +21,14 @@ def home():
     ]
 
     return render_template(
-        "index.html",
+        "dati.html",
         province=province
     )
+
+
+@main_bp.route("/tableau")
+def tableau_page():
+    return render_template("tableau.html")
 
 
 @main_bp.route("/api-status")

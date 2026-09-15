@@ -1,0 +1,96 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+
+<!-- ANALISI -->
+<section id="analisi" class="section section-light">
+    <div class="container">
+
+        <p class="section-label">LE ANALISI</p>
+
+        <h2>Cosa ci raccontano i dati</h2>
+
+        <p class="section-intro">
+            I dati meteorologici analizzati nella dashboard permettono
+            di osservare l'andamento delle temperature e di individuare
+            le giornate più calde e più fredde del periodo considerato.
+            Questi risultati possono essere messi in relazione con
+            la domanda e la produzione del sistema elettrico italiano.
+        </p>
+
+        <div class="cards">
+
+            <article class="card">
+                <h3>Domanda elettrica</h3>
+                <p>
+                    Analisi della domanda elettrica nelle diverse zone
+                    di mercato italiane e delle sue variazioni.
+                </p>
+            </article>
+
+            <article class="card">
+                <h3>Produzione energetica</h3>
+                <p>
+                    Analisi della produzione elettrica suddivisa
+                    per fonte energetica e area geografica.
+                </p>
+            </article>
+
+            <article class="card">
+                <h3>Dati meteorologici</h3>
+                <p>
+                    Temperatura, radiazione solare e vento vengono
+                    messi in relazione con i dati energetici.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- TABLEAU -->
+<section id="tableau" class="section section-light">
+    <div class="container">
+
+        <div class="section-header">
+            <span class="section-label">Business Intelligence</span>
+            <h2>Dashboard Tableau</h2>
+            <p>
+                Le dashboard Tableau con l'analisi approfondita di clima,
+                domanda e produzione energetica.
+            </p>
+        </div>
+
+        <div class="tableau-embed">
+            <h3>Dashboard 1 — Panoramica Nazionale del Territorio</h3>
+            <div
+                class="tableau-viz-container"
+                data-url="https://public.tableau.com/views/progetto_17894752402910/Dashboard1PanoramicaNazionaleTerritorio"
+            >
+                <p class="tableau-placeholder">Caricamento dashboard...</p>
+            </div>
+        </div>
+
+        <div class="tableau-embed">
+            <h3>Dashboard 2 — Dinamiche Temporali & Analisi Climatica</h3>
+            <div
+                class="tableau-viz-container"
+                data-url="https://public.tableau.com/views/progetto_17894752402910/Dashboard2DinamicheTemporaliAnalisiClimatica"
+            >
+                <p class="tableau-placeholder">Caricamento dashboard...</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script
+    type="module"
+    src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"
+></script>
+<script src="{{ url_for('static', filename='script_tableau.js') }}" defer></script>
+{% endblock %}

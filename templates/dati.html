@@ -1,0 +1,198 @@
+{% extends "_layout.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style_esteso.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="section">
+    <div class="container">
+
+        <div class="section-header">
+            <span class="section-label">Dashboard</span>
+            <h2>Analisi dei dati meteorologici</h2>
+            <p>
+                Seleziona un mese e una provincia per analizzare
+                l'andamento giornaliero delle temperature.
+            </p>
+        </div>
+
+        <div class="dashboard">
+
+            <div class="filtri">
+
+                <div class="filtro">
+                    <label for="mese">Mese</label>
+                    <input type="month" id="mese" value="2025-01">
+                </div>
+
+                <div class="filtro">
+                    <label for="provincia">Provincia</label>
+                    <select id="provincia">
+                        <option value="">Tutte le province</option>
+
+                        {% for p in province %}
+                        <option value="{{ p }}">{{ p }}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <button id="btnAnalizza" class="bottone bottone-small">
+                    Analizza
+                </button>
+
+            </div>
+
+            <div id="messaggio" class="messaggio"></div>
+
+
+            <div class="risultati-meteo risultati-meteo-4">
+
+                <div class="risultato-box">
+                    <span>Temperatura media</span>
+                    <strong id="temperaturaMedia">-- °C</strong>
+                </div>
+
+                <div class="risultato-box">
+                    <span>Vento medio</span>
+                    <strong id="ventoMedio">-- m/s</strong>
+                </div>
+
+                <div class="risultato-box">
+                    <span>Vento massimo</span>
+                    <strong id="ventoMassimo">-- m/s</strong>
+                </div>
+
+                <div class="risultato-box">
+                    <span>Vento minimo</span>
+                    <strong id="ventoMinimo">-- m/s</strong>
+                </div>
+
+            </div>
+
+            <div class="giorni-estremi">
+
+                <div class="risultato-box">
+                    <span>🔥 Temperatura massima raggiunta</span>
+                    <strong id="giornoPiuCaldo">--</strong>
+                    <small id="valoreGiornoCaldo">-- °C</small>
+                    <small id="provinciaGiornoCaldo">--</small>
+                </div>
+
+                <div class="risultato-box">
+                    <span>❄️ Temperatura minima raggiunta</span>
+                    <strong id="giornoPiuFreddo">--</strong>
+                    <small id="valoreGiornoFreddo">-- °C</small>
+                    <small id="provinciaGiornoFreddo">--</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% include "_dashboard_estesa.html" %}
+
+<!-- ENERGIA -->
+<section id="energia" class="section">
+    <div class="container">
+
+        <div class="section-header">
+            <span class="section-label">Energia</span>
+            <h2>Domanda, produzione e capacità installata</h2>
+            <p>
+                Panoramica nazionale 2025: come varia la domanda elettrica
+                nel corso dell'anno, da quali fonti arriva la produzione
+                e dove si concentra la capacità installata.
+            </p>
+        </div>
+
+        <div class="energia-grid">
+
+            <div class="grafico-box">
+                <h3>Domanda media mensile nazionale</h3>
+                <div class="grafico-canvas-wrap">
+                    <canvas
+                        id="graficoDomandaMensile"
+                        role="img"
+                        aria-label="Andamento della domanda elettrica media mensile in Italia nel 2025"
+                    ></canvas>
+                </div>
+            </div>
+
+            <div class="grafico-box">
+                <h3>Produzione per fonte energetica</h3>
+                <div class="grafico-canvas-wrap">
+                    <canvas
+                        id="graficoProduzioneFonte"
+                        role="img"
+                        aria-label="Percentuale di produzione energetica per fonte in Italia nel 2025"
+                    ></canvas>
+                </div>
+                <div id="legendaProduzioneFonte" class="grafico-legenda"></div>
+            </div>
+
+            <div class="grafico-box">
+                <h3>Capacità installata per fonte</h3>
+                <div class="grafico-canvas-wrap">
+                    <canvas
+                        id="graficoCapacitaFonte"
+                        role="img"
+                        aria-label="Capacità installata per fonte energetica in Italia nel 2025"
+                    ></canvas>
+                </div>
+            </div>
+
+            <div class="grafico-box">
+                <h3>Rinnovabile vs non rinnovabile</h3>
+                <div id="statRinnovabile" class="stats-rinnovabile">
+                    <p class="messaggio">Caricamento dati...</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section-header energia-grafici-header">
+            <span class="section-label">Meteo e produzione</span>
+            <h2>Grafici di correlazione (2025, Italia)</h2>
+        </div>
+
+        <div class="energia-grid">
+
+            <div class="grafico-box">
+                <h3>Radiazione per classe di temperatura</h3>
+                <img
+                    class="grafico-immagine"
+                    src="{{ url_for('grafici.grafico_temperatura_radiazione', anno=2025) }}"
+                    alt="Distribuzione della radiazione solare per classe di temperatura, Italia 2025"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="grafico-box">
+                <h3>Vento medio per stagione e temperatura</h3>
+                <img
+                    class="grafico-immagine"
+                    src="{{ url_for('grafici.grafico_vento_temperatura_stagioni', anno=2025) }}"
+                    alt="Vento medio per classe di temperatura e stagione, Italia 2025"
+                    loading="lazy"
+                >
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='script_dati.js') }}" defer></script>
+<script src="{{ url_for('static', filename='script_esteso.js') }}" defer></script>
+{% endblock %}
