@@ -284,6 +284,7 @@ def scatter_vento_radiazione():
               AND m.data < %s
               AND m.vento IS NOT NULL
               AND m.radiazione IS NOT NULL
+              AND RAND() <= 0.05
         """
 
         params = [data_inizio, data_fine]
