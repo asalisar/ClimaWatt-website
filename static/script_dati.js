@@ -512,12 +512,35 @@ async function caricaStatRinnovabile() {
 
         const dati = await risposta.json();
 
-        contenitore.innerHTML = dati.map(riga => `
+        const coloriTipo = {
+            "rinnovabile": COLORE_VERDE,
+            "non rinnovabile": "#a8a29e"
+        };
+
+        const barra = dati.map(riga => `
+            <div
+                class="stat-rinnovabile-segmento"
+                style="width:${riga.percentuale_produzione}%; background:${coloriTipo[riga.tipo] || COLORE_VERDE}"
+            ></div>
+        `).join("");
+
+        const righe = dati.map(riga => `
             <div class="stat-rinnovabile-riga">
-                <span>${riga.tipo}</span>
+                <span>
+                    <span
+                        class="pallino"
+                        style="background:${coloriTipo[riga.tipo] || COLORE_VERDE}"
+                    ></span>
+                    ${riga.tipo.charAt(0).toUpperCase() + riga.tipo.slice(1)}
+                </span>
                 <strong>${Number(riga.percentuale_produzione).toFixed(1)}%</strong>
             </div>
         `).join("");
+
+        contenitore.innerHTML = `
+            <div class="stat-rinnovabile-barra">${barra}</div>
+            ${righe}
+        `;
 
     } catch (errore) {
         console.error(errore);
