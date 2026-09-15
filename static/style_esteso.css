@@ -1,0 +1,29 @@
+/*
+    Stili per _dashboard_estesa.html.
+    Da collegare in index.html con:
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_esteso.css') }}">
+    (dopo il link a style.css)
+*/
+
+.dashboard-estesa-header {
+    margin-top: 70px;
+}
+
+.risultati-meteo-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+    .risultati-meteo-5 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .risultati-meteo-5 {
+        grid-template-columns: 1fr;
+    }
+}

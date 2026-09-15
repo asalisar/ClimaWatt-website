@@ -24,6 +24,7 @@ def create_app():
     from .routes.produzione import produzione_bp
     from .routes.capacita import capacita_bp
     from .routes.incroci import incroci_bp
+    from .routes.esteso import esteso_bp
 
     for blueprint in (
         main_bp,

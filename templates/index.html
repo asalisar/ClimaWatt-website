@@ -6,6 +6,8 @@
 <meta name="description" content="ClimaWatt analizza la relazione tra clima, domanda elettrica e produzione energetica in Italia.">
 <title>ClimaWatt | Clima ed energia in Italia</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style_esteso.css') }}">
+
 </head>
 <body>
 
@@ -172,6 +174,8 @@
 
     </div>
 </section>
+
+    {% include "_dashboard_estesa.html" %}
 
 <!-- ENERGIA -->
 <section id="energia" class="section">
@@ -511,5 +515,6 @@
 ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+<script src="{{ url_for('static', filename='script_esteso.js') }}" defer></script>
 </body>
 </html>
