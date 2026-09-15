@@ -1,0 +1,62 @@
+<!--
+    Carosello immagini in alto al sito (pale eoliche, pannelli solari).
+    Vedi README/istruzioni per come includerlo in index.html
+    (subito dopo il tag di apertura main, prima della sezione HERO).
+-->
+<section class="carosello" aria-roledescription="carosello immagini">
+
+    <div class="carosello-track">
+
+        <img
+            class="carosello-slide attiva"
+            src="{{ url_for('static', filename='images/carosello/carosello-1.jpg') }}"
+            alt="Pala eolica su collina verde al tramonto"
+        >
+
+        <img
+            class="carosello-slide"
+            src="{{ url_for('static', filename='images/carosello/carosello-2.jpg') }}"
+            alt="Parco eolico tra le colline"
+        >
+
+        <img
+            class="carosello-slide"
+            src="{{ url_for('static', filename='images/carosello/carosello-3.jpg') }}"
+            alt="Pannelli solari al tramonto"
+        >
+
+        <img
+            class="carosello-slide"
+            src="{{ url_for('static', filename='images/carosello/carosello-4.jpg') }}"
+            alt="Pannelli solari su tetto al tramonto"
+        >
+
+        <img
+            class="carosello-slide"
+            src="{{ url_for('static', filename='images/carosello/carosello-5.jpg') }}"
+            alt="Campo di pannelli solari"
+        >
+
+        <img
+            class="carosello-slide"
+            src="{{ url_for('static', filename='images/carosello/carosello-6.jpg') }}"
+            alt="Parco eolico in Sardegna"
+        >
+
+    </div>
+
+    <button
+        class="carosello-freccia carosello-prec"
+        type="button"
+        aria-label="Immagine precedente"
+    >‹</button>
+
+    <button
+        class="carosello-freccia carosello-succ"
+        type="button"
+        aria-label="Immagine successiva"
+    >›</button>
+
+    <div class="carosello-puntini" role="tablist" aria-label="Vai a un'immagine"></div>
+
+</section>

@@ -83,3 +83,19 @@
 .estremi-provincia-intestazione .filtro select {
     min-width: 220px;
 }
+
+#giornoPiuCaldoProvinciaAnno,
+#giornoPiuFreddoProvinciaAnno,
+#oraPiuCaldaAnno,
+#oraPiuFreddaAnno {
+    font-size: 22px;
+}
+
+@media (max-width: 480px) {
+    #giornoPiuCaldoProvinciaAnno,
+    #giornoPiuFreddoProvinciaAnno,
+    #oraPiuCaldaAnno,
+    #oraPiuFreddaAnno {
+        font-size: 18px;
+    }
+}

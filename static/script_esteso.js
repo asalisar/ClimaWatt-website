@@ -307,23 +307,25 @@ async function caricaStatisticheProvincia() {
     try {
 
         const datiOraCalda = await fetchJson(
-            `${API_URL_ESTESO}/ora-piu-calda-anno-provincia?anno=2025${parametroProvincia}`
+            `${API_URL_ESTESO}/momento-piu-caldo-anno-provincia?anno=2025${parametroProvincia}`
         );
 
         if (datiOraCalda && datiOraCalda.ora !== undefined) {
+            const ora = `${String(datiOraCalda.ora).padStart(2, "0")}:00`;
             oraPiuCaldaAnno.textContent =
-                `${String(datiOraCalda.ora).padStart(2, "0")}:00`;
+                `${formattaData(datiOraCalda.data)}, ${ora}`;
         } else {
             oraPiuCaldaAnno.textContent = "--:--";
         }
 
         const datiOraFredda = await fetchJson(
-            `${API_URL_ESTESO}/ora-piu-fredda-provincia?anno=2025${parametroProvincia}`
+            `${API_URL_ESTESO}/momento-piu-freddo-anno-provincia?anno=2025${parametroProvincia}`
         );
 
         if (datiOraFredda && datiOraFredda.ora !== undefined) {
+            const ora = `${String(datiOraFredda.ora).padStart(2, "0")}:00`;
             oraPiuFreddaAnno.textContent =
-                `${String(datiOraFredda.ora).padStart(2, "0")}:00`;
+                `${formattaData(datiOraFredda.data)}, ${ora}`;
         } else {
             oraPiuFreddaAnno.textContent = "--:--";
         }

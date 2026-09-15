@@ -413,3 +413,81 @@ def radiazione_stats_periodo():
 
     except Exception as e:
         return handle_error(e)
+
+
+# ============================================================
+# MOMENTO ESATTO (giorno + ora) PIU' CALDO/FREDDO DELL'ANNO
+# ============================================================
+
+@esteso_bp.route("/momento-piu-caldo-anno-provincia")
+def momento_piu_caldo_anno_provincia():
+
+    anno = request.args.get("anno", default="2025")
+    provincia = request.args.get("provincia")
+
+    try:
+        anno_int = int(anno)
+    except (TypeError, ValueError):
+        return jsonify({"errore": "Formato anno non valido. Usa YYYY."}), 400
+
+    query = """
+        SELECT
+            m.data,
+            HOUR(m.orario) AS ora,
+            m.temperatura
+        FROM meteo m
+        JOIN province p
+            ON m.provincia_id = p.id
+        WHERE YEAR(m.data) = %s
+          AND m.temperatura IS NOT NULL
+    """
+
+    params = [anno_int]
+
+    if provincia:
+        query += " AND p.nome = %s"
+        params.append(provincia)
+
+    query += " ORDER BY m.temperatura DESC LIMIT 1"
+
+    try:
+        return jsonify(execute_single_query(query, params))
+    except Exception as e:
+        return handle_error(e)
+
+
+@esteso_bp.route("/momento-piu-freddo-anno-provincia")
+def momento_piu_freddo_anno_provincia():
+
+    anno = request.args.get("anno", default="2025")
+    provincia = request.args.get("provincia")
+
+    try:
+        anno_int = int(anno)
+    except (TypeError, ValueError):
+        return jsonify({"errore": "Formato anno non valido. Usa YYYY."}), 400
+
+    query = """
+        SELECT
+            m.data,
+            HOUR(m.orario) AS ora,
+            m.temperatura
+        FROM meteo m
+        JOIN province p
+            ON m.provincia_id = p.id
+        WHERE YEAR(m.data) = %s
+          AND m.temperatura IS NOT NULL
+    """
+
+    params = [anno_int]
+
+    if provincia:
+        query += " AND p.nome = %s"
+        params.append(provincia)
+
+    query += " ORDER BY m.temperatura ASC LIMIT 1"
+
+    try:
+        return jsonify(execute_single_query(query, params))
+    except Exception as e:
+        return handle_error(e)
