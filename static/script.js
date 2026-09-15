@@ -5,8 +5,6 @@ const meseInput = document.getElementById("mese");
 const provinciaSelect = document.getElementById("provincia");
 
 const temperaturaMedia = document.getElementById("temperaturaMedia");
-const temperaturaMassima = document.getElementById("temperaturaMassima");
-const temperaturaMinima = document.getElementById("temperaturaMinima");
 
 const ventoMedio = document.getElementById("ventoMedio");
 const ventoMassimo = document.getElementById("ventoMassimo");
@@ -37,8 +35,6 @@ btnAnalizza.addEventListener("click", async function () {
     messaggio.textContent = "Caricamento dati...";
 
     temperaturaMedia.textContent = "-- °C";
-    temperaturaMassima.textContent = "-- °C";
-    temperaturaMinima.textContent = "-- °C";
 
     ventoMedio.textContent = "-- m/s";
     ventoMassimo.textContent = "-- m/s";
@@ -171,10 +167,6 @@ btnAnalizza.addEventListener("click", async function () {
                 )
             );
 
-            temperaturaMassima.textContent =
-                `${massimo.toFixed(2)} °C`;
-
-
             const giornoCaldo = valoriMassimi.find(
                 elemento => elemento.temperatura === massimo
             );
@@ -214,10 +206,6 @@ btnAnalizza.addEventListener("click", async function () {
                     elemento => elemento.temperatura
                 )
             );
-
-            temperaturaMinima.textContent =
-                `${minimo.toFixed(2)} °C`;
-
 
             const giornoFreddo = valoriMinimi.find(
                 elemento => elemento.temperatura === minimo
