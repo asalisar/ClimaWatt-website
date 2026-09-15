@@ -25,6 +25,7 @@ def create_app():
     from .routes.capacita import capacita_bp
     from .routes.incroci import incroci_bp
     from .routes.esteso import esteso_bp
+    from .routes.incroci_esteso import incroci_esteso_bp
 
     for blueprint in (
         main_bp,
@@ -35,6 +36,7 @@ def create_app():
         capacita_bp,
         incroci_bp,
         esteso_bp,
+        incroci_esteso_bp,
     ):
         app.register_blueprint(blueprint)
 
