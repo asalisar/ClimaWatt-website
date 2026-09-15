@@ -16,7 +16,7 @@
             <div class="filtri">
 
                 <div class="filtro">
-                    <label for="giornoEsteso">Giorno (opzionale)</label>
+                    <label for="giornoEsteso" id="labelGiornoEsteso">Giorno</label>
                     <input
                         type="date"
                         id="giornoEsteso"
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="filtro">
-                    <label for="meseEsteso" id="labelMeseEsteso">Mese (se non scegli un giorno)</label>
+                    <label for="meseEsteso" id="labelMeseEsteso">Mese</label>
                     <input
                         type="month"
                         id="meseEsteso"
@@ -136,38 +136,58 @@
 
         <div class="section-header dashboard-estesa-header">
             <span class="section-label">Statistiche annuali · 2025</span>
-            <h2>Estremi dell'anno</h2>
-            <p>
-                Le prime due funzionano sempre; le altre tre servono
-                una provincia selezionata sopra.
-            </p>
+            <h2>Estremi dell'anno in Italia</h2>
+            <p>Il giorno più caldo e più freddo registrati, su tutta Italia.</p>
         </div>
 
-        <div class="risultati-meteo risultati-meteo-5">
+        <div class="risultati-meteo">
 
             <div class="risultato-box">
-                <span>Giorno più caldo (con provincia)</span>
+                <span>Giorno più caldo</span>
                 <strong id="giornoPiuCaldoProvinciaAnno">--</strong>
             </div>
 
             <div class="risultato-box">
-                <span>Giorno più freddo (con provincia)</span>
+                <span>Giorno più freddo</span>
                 <strong id="giornoPiuFreddoProvinciaAnno">--</strong>
             </div>
 
-            <div class="risultato-box">
-                <span>Ora più calda dell'anno</span>
-                <strong id="oraPiuCaldaAnno">--:--</strong>
+        </div>
+
+        <div class="estremi-provincia-box">
+
+            <div class="estremi-provincia-intestazione">
+                <h3>Estremi dell'anno per provincia</h3>
+                <div class="filtro">
+                    <label for="provinciaEstremiAnno">Provincia</label>
+                    <select id="provinciaEstremiAnno">
+                        <option value="">Scegli una provincia...</option>
+
+                        {% for p in province %}
+                        <option value="{{ p }}">{{ p }}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
             </div>
 
-            <div class="risultato-box">
-                <span>Ora più fredda dell'anno</span>
-                <strong id="oraPiuFreddaAnno">--:--</strong>
-            </div>
+            <div class="risultati-meteo">
 
-            <div class="risultato-box">
-                <span>Mese con più radiazione</span>
-                <strong id="meseMaxRadiazione">--</strong>
+                <div class="risultato-box">
+                    <span>Ora più calda dell'anno</span>
+                    <strong id="oraPiuCaldaAnno">--:--</strong>
+                </div>
+
+                <div class="risultato-box">
+                    <span>Ora più fredda dell'anno</span>
+                    <strong id="oraPiuFreddaAnno">--:--</strong>
+                </div>
+
+                <div class="risultato-box">
+                    <span>Mese con più radiazione</span>
+                    <strong id="meseMaxRadiazione">--</strong>
+                </div>
+
             </div>
 
         </div>

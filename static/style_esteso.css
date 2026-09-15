@@ -27,3 +27,47 @@
         grid-template-columns: 1fr;
     }
 }
+
+.risultati-meteo-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .risultati-meteo-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .risultati-meteo-4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.estremi-provincia-box {
+    margin-top: 30px;
+    padding: 30px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.estremi-provincia-intestazione {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.estremi-provincia-intestazione h3 {
+    font-size: 19px;
+}
+
+.estremi-provincia-intestazione .filtro select {
+    min-width: 220px;
+}

@@ -12,6 +12,7 @@ const btnAnalizzaEsteso = document.getElementById("btnAnalizzaEsteso");
 const giornoEstesoInput = document.getElementById("giornoEsteso");
 const meseEstesoInput = document.getElementById("meseEsteso");
 const provinciaEstesoSelect = document.getElementById("provinciaEsteso");
+const provinciaEstremiAnnoSelect = document.getElementById("provinciaEstremiAnno");
 const sogliaEstesoInput = document.getElementById("sogliaEsteso");
 const sogliaVentoEstesoInput = document.getElementById("sogliaVentoEsteso");
 const messaggioEsteso = document.getElementById("messaggioEsteso");
@@ -51,12 +52,15 @@ function mediaValori(righe, campo) {
 }
 
 
+let ultimoCampoPeriodoScelto = "mese";
+
+
 function costruisceParametroPeriodo() {
 
     const giorno = giornoEstesoInput.value;
     const mese = meseEstesoInput.value;
 
-    if (giorno) {
+    if (ultimoCampoPeriodoScelto === "giorno" && giorno) {
         return `giorno=${giorno}`;
     }
 
@@ -67,24 +71,41 @@ function costruisceParametroPeriodo() {
 function aggiornaStatoMese() {
 
     const labelMese = document.getElementById("labelMeseEsteso");
+    const labelGiorno = document.getElementById("labelGiornoEsteso");
 
-    if (giornoEstesoInput.value) {
-        meseEstesoInput.disabled = true;
-        if (labelMese) {
-            labelMese.textContent = "Mese (ignorato: hai scelto un giorno)";
-        }
-    } else {
-        meseEstesoInput.disabled = false;
-        if (labelMese) {
-            labelMese.textContent = "Mese (se non scegli un giorno)";
-        }
+    const giornoAttivo =
+        ultimoCampoPeriodoScelto === "giorno" && giornoEstesoInput.value;
+
+    if (labelMese) {
+        labelMese.textContent = giornoAttivo
+            ? "Mese (ignorato: hai scelto un giorno più di recente)"
+            : "Mese";
+    }
+
+    if (labelGiorno) {
+        labelGiorno.textContent = giornoAttivo
+            ? "Giorno"
+            : "Giorno (ignorato: hai scelto un mese più di recente)";
     }
 }
 
 if (giornoEstesoInput) {
-    giornoEstesoInput.addEventListener("input", aggiornaStatoMese);
-    aggiornaStatoMese();
+
+    giornoEstesoInput.addEventListener("input", function () {
+        ultimoCampoPeriodoScelto = "giorno";
+        aggiornaStatoMese();
+    });
 }
+
+if (meseEstesoInput) {
+
+    meseEstesoInput.addEventListener("input", function () {
+        ultimoCampoPeriodoScelto = "mese";
+        aggiornaStatoMese();
+    });
+}
+
+aggiornaStatoMese();
 
 
 async function fetchJson(url) {
@@ -269,10 +290,10 @@ async function caricaStatisticheAnnuali() {
 
 async function caricaStatisticheProvincia() {
 
-    const provincia = provinciaEstesoSelect.value;
+    const provincia = provinciaEstremiAnnoSelect.value;
 
     if (!provincia) {
-        const messaggio = "↑ Scegli una provincia nel filtro qui sopra";
+        const messaggio = "Scegli una provincia qui sopra";
         oraPiuCaldaAnno.textContent = messaggio;
         oraPiuFreddaAnno.textContent = messaggio;
         meseMaxRadiazione.textContent = messaggio;
@@ -328,8 +349,8 @@ const NOMI_MESI_ESTESO = [
 ];
 
 
-if (provinciaEstesoSelect) {
-    provinciaEstesoSelect.addEventListener("change", caricaStatisticheProvincia);
+if (provinciaEstremiAnnoSelect) {
+    provinciaEstremiAnnoSelect.addEventListener("change", caricaStatisticheProvincia);
     caricaStatisticheAnnuali();
     caricaStatisticheProvincia();
 }
