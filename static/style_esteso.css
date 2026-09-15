@@ -28,6 +28,18 @@
     }
 }
 
+.risultati-meteo-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .risultati-meteo-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
 .risultati-meteo-4 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
