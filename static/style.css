@@ -409,22 +409,18 @@ border-radius: 10px; background: var(--white); color: var(--text); font-size: 15
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    overflow: hidden;
+    padding: 20px;
 }
 
 .tableau-viz-container {
-    min-height: 420px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
+    width: 100%;
 }
 
 .tableau-viz-container tableau-viz {
+    display: block;
     width: 100%;
-    min-height: 500px;
+    height: 1000px;
 }
-
 .tableau-placeholder {
     color: var(--text-light);
     text-align: center;
