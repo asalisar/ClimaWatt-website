@@ -566,20 +566,18 @@ caricaStatRinnovabile();
  * messaggio di placeholder con la viz incorporata.
  */
 
-const tableauContainer = document.getElementById("tableauViz");
+document.querySelectorAll(".tableau-viz-container").forEach(function (container) {
 
-if (tableauContainer) {
-
-    const tableauUrl = tableauContainer.dataset.url;
+    const tableauUrl = container.dataset.url;
 
     if (tableauUrl) {
 
-        tableauContainer.innerHTML = "";
+        container.innerHTML = "";
 
         const viz = document.createElement("tableau-viz");
         viz.setAttribute("src", tableauUrl);
         viz.setAttribute("toolbar", "bottom");
 
-        tableauContainer.appendChild(viz);
+        container.appendChild(viz);
     }
-}
+});
