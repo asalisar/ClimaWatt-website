@@ -312,8 +312,9 @@ async function caricaStatisticheProvincia() {
 
         if (datiOraCalda && datiOraCalda.ora !== undefined) {
             const ora = `${String(datiOraCalda.ora).padStart(2, "0")}:00`;
+            const temperatura = Number(datiOraCalda.temperatura).toFixed(1);
             oraPiuCaldaAnno.textContent =
-                `${formattaData(datiOraCalda.data)}, ${ora}`;
+                `${formattaData(datiOraCalda.data)}, ${ora} (${temperatura} °C)`;
         } else {
             oraPiuCaldaAnno.textContent = "--:--";
         }
@@ -324,8 +325,9 @@ async function caricaStatisticheProvincia() {
 
         if (datiOraFredda && datiOraFredda.ora !== undefined) {
             const ora = `${String(datiOraFredda.ora).padStart(2, "0")}:00`;
+            const temperatura = Number(datiOraFredda.temperatura).toFixed(1);
             oraPiuFreddaAnno.textContent =
-                `${formattaData(datiOraFredda.data)}, ${ora}`;
+                `${formattaData(datiOraFredda.data)}, ${ora} (${temperatura} °C)`;
         } else {
             oraPiuFreddaAnno.textContent = "--:--";
         }
